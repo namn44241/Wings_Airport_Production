@@ -128,6 +128,8 @@ header::after { right: 10%; animation-delay: 5s; }
 /* Định dạng cho thanh điều hướng */
 nav {
     margin: 20px 0;
+    position: relative;
+    z-index: 1000;
 }
 
 nav ul {
@@ -253,6 +255,7 @@ nav ul ul li:last-child a {
 @media (max-width: 768px) {
     nav ul {
         flex-direction: column;
+        width: 100%;
     }
 
     nav ul ul {
@@ -262,6 +265,7 @@ nav ul ul li:last-child a {
         display: none;
         opacity: 1;
         transition: none;
+        position: relative;
     }
 
     nav ul li:hover > ul {
@@ -269,12 +273,40 @@ nav ul ul li:last-child a {
         transition-delay: 0s;
     }
 
-    nav ul ul::before {
+    nav ul ul {
+        position: static;
         display: none;
+        width: 100%;
+        transform: none;
+        box-shadow: none;
+        background: rgba(58,123,213,0.9);
     }
 
     nav ul ul li a {
         padding-left: 40px;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: left;
+    }
+    nav ul li:hover > ul {
+        display: block;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+    }
+
+    /* Xóa các hiệu ứng không cần thiết trên mobile */
+    nav ul ul::before {
+        display: none;
+    }
+
+    nav ul li:hover > a {
+        transform: none;
+    }
+
+    /* Thêm padding cho submenu items */
+    nav ul ul li a {
+        padding-left: 30px;
     }
 }
 /* Định dạng cho nội dung chính */
