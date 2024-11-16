@@ -124,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function initializeBooking() {
         const form = document.getElementById('customer-form');
-
         fetchNextCustomerId();
 
         form.addEventListener('submit', function(e) {
@@ -141,7 +140,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     const customerId = document.getElementById('customer-id').value;
                     // Lưu Mã khách hàng vào localStorage
                     localStorage.setItem('lastRegisteredCustomerId', customerId);
-                    showContainer('manage');
+                    
+                    // Ẩn container và overlay hiện tại
+                    const currentContainer = document.getElementById('booking-container');
+                    const overlay = document.getElementById('overlay1');
+                    currentContainer.style.opacity = '0';
+                    currentContainer.style.display = 'none';
+                    overlay.style.display = 'none';
+
+                    // Reset form
+                    this.reset();
+                    
+                    // Chuyển sang màn hình đặt chỗ
+                    setTimeout(() => {
+                        showContainer('manage');
+                    }, 100);
                 } else {
                     alert('Có lỗi xảy ra: ' + data.message);
                 }
