@@ -45,17 +45,26 @@
       logoutBtn.style.display = 'none';
       logoutBtn.style.marginLeft = '10px';
       logoutBtn.style.cursor = 'pointer';
+
+      // Thêm xử lý cho touch events
+      usernameSpan.addEventListener('touchstart', function(e) {
+          e.preventDefault();
+          this.classList.toggle('active');
+          logoutBtn.style.display = this.classList.contains('active') ? 'inline' : 'none';
+      });
+
+      // Giữ lại các event listeners cũ
+      usernameSpan.addEventListener('mouseenter', () => {
+          usernameSpan.appendChild(logoutBtn);
+          logoutBtn.style.display = 'inline';
+      });
+
+      usernameSpan.addEventListener('mouseleave', () => {
+          logoutBtn.style.display = 'none';
+      });
+
       logoutBtn.addEventListener('click', () => {
         window.location.href = '/logout';
-      });
-    
-      usernameSpan.addEventListener('mouseenter', () => {
-        usernameSpan.appendChild(logoutBtn);
-        logoutBtn.style.display = 'inline';
-      });
-    
-      usernameSpan.addEventListener('mouseleave', () => {
-        logoutBtn.style.display = 'none';
       });
   </script>
 
