@@ -31,7 +31,7 @@ var fullName = lastName + ' ' + firstName;
 
 console.log("Selected language:", language);
 
-fetch('http://127.0.0.1:8080/send-email', {
+fetch('/send-email', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
