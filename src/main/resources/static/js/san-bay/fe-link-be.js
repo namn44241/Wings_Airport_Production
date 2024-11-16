@@ -150,11 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     // Reset form
                     this.reset();
-                    
-                    // Chuyển sang màn hình đặt chỗ
-                    setTimeout(() => {
-                        showContainer('manage');
-                    }, 100);
+
                 } else {
                     alert('Có lỗi xảy ra: ' + data.message);
                 }
