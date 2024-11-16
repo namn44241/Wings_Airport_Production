@@ -2734,6 +2734,46 @@
           }
         }, 500);
       });
+
+      document.addEventListener('DOMContentLoaded', function() {
+        // Xử lý menu trên mobile
+        const menuItems = document.querySelectorAll('nav ul li');
+        
+        menuItems.forEach(item => {
+            const link = item.querySelector('a');
+            const submenu = item.querySelector('ul');
+            
+            if (submenu) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    item.classList.toggle('active');
+                    
+                    // Đóng các submenu khác
+                    menuItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                });
+            }
+        });
+
+        // Xử lý responsive cho dashboard cards
+        function adjustCardLayout() {
+            const container = document.querySelector('#dashboard .card-container');
+            if (container) {
+                const width = window.innerWidth;
+                if (width <= 768) {
+                    container.style.gridTemplateColumns = '1fr';
+                } else {
+                    container.style.gridTemplateColumns = 'repeat(4, 1fr)';
+                }
+            }
+        }
+
+        window.addEventListener('resize', adjustCardLayout);
+        adjustCardLayout();
+    });
     </script>
 </body>
 </html>
