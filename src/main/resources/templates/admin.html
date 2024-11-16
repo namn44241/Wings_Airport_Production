@@ -39,34 +39,39 @@
     }
 </script>
   <script>
-      const usernameSpan = document.getElementById('username');
-      const logoutBtn = document.createElement('span');
-      logoutBtn.textContent = 'Đăng xuất Admin';
-      logoutBtn.style.display = 'none';
-      logoutBtn.style.marginLeft = '10px';
-      logoutBtn.style.cursor = 'pointer';
+    const usernameSpan = document.getElementById('username');
+    const logoutBtn = document.createElement('span');
+    logoutBtn.textContent = 'Đăng xuất Admin';
+    logoutBtn.style.display = 'none';
+    logoutBtn.style.cursor = 'pointer';
+    
+    // Thêm sự kiện click cho mobile
+    usernameSpan.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.classList.toggle('active');
+        
+        if (!logoutBtn.parentElement) {
+            this.appendChild(logoutBtn);
+        }
+        logoutBtn.style.display = this.classList.contains('active') ? 'block' : 'none';
+    });
 
-      // Thêm xử lý cho touch events
-      usernameSpan.addEventListener('touchstart', function(e) {
-          e.preventDefault();
-          this.classList.toggle('active');
-          logoutBtn.style.display = this.classList.contains('active') ? 'inline' : 'none';
-      });
-
-      // Giữ lại các event listeners cũ
-      usernameSpan.addEventListener('mouseenter', () => {
-          usernameSpan.appendChild(logoutBtn);
-          logoutBtn.style.display = 'inline';
-      });
-
-      usernameSpan.addEventListener('mouseleave', () => {
-          logoutBtn.style.display = 'none';
-      });
-
-      logoutBtn.addEventListener('click', () => {
+    // Thêm sự kiện click cho logout
+    logoutBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
         window.location.href = '/logout';
-      });
-  </script>
+    });
+
+    // Đóng dropdown khi click ra ngoài
+    document.addEventListener('click', function(e) {
+        if (!usernameSpan.contains(e.target)) {
+            usernameSpan.classList.remove('active');
+            logoutBtn.style.display = 'none';
+        }
+    });
+</script>
 
   <!-- Thanh điều hướng (navigation): -->
   <nav>

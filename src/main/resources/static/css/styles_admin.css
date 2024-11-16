@@ -254,64 +254,62 @@ nav ul ul li:last-child a {
     nav ul {
         flex-direction: column;
         align-items: stretch;
-        position: relative;
+        padding: 10px;
     }
 
     nav ul li {
         width: 100%;
-        position: static;
+        margin: 5px 0;
     }
 
     nav ul li a {
-        padding: 15px 20px;
+        padding: 15px;
         width: 100%;
-        box-sizing: border-box;
+        display: block;
         text-align: left;
+        font-size: 16px;
     }
 
     /* Hiển thị submenu */
     nav ul ul {
         position: static;
-        width: 100%;
         display: none;
+        width: 100%;
         opacity: 1;
         transform: none;
-        box-shadow: none;
-        background: rgba(255, 255, 255, 0.1);
         padding-left: 20px;
+        background: rgba(255, 255, 255, 0.1);
     }
 
-    nav ul li:hover > ul {
+    nav ul li:hover > ul,
+    nav ul li:active > ul,
+    nav ul li:focus > ul {
         display: block;
-        transform: none;
+        opacity: 1;
+        pointer-events: auto;
     }
 
-    /* Sửa lại phần username và nút đăng xuất trên mobile */
+    /* Sửa lại phần username và nút đăng xuất */
     #username {
-        position: relative;
         display: inline-block;
-    }
-
-    #username:after {
-        content: '▼';
-        margin-left: 5px;
-        font-size: 12px;
+        padding: 10px;
+        position: relative;
+        z-index: 1000;
     }
 
     #username + span {
+        display: none;
         position: absolute;
         top: 100%;
         left: 0;
         background: white;
-        padding: 10px;
+        color: black;
+        padding: 10px 20px;
         border-radius: 5px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        z-index: 1000;
-    }
-
-    /* Thêm hỗ trợ touch events */
-    #username.active + span {
-        display: block !important;
+        z-index: 1001;
+        width: auto;
+        min-width: 150px;
     }
 }
 
