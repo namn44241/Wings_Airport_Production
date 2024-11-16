@@ -929,21 +929,20 @@ main section:target {
 
 /* Sửa lại phần CSS cho mobile navigation */
 @media (max-width: 768px) {
-    /* Container chính */
+    /* Menu chính */
     nav {
         width: 100%;
         padding: 10px;
         box-sizing: border-box;
     }
 
-    /* Menu chính */
     nav ul {
         width: 100%;
         flex-direction: column;
         padding: 0;
         margin: 0;
         border-radius: 10px;
-        overflow: hidden;
+        overflow: visible;
     }
 
     nav ul li {
@@ -962,7 +961,6 @@ main section:target {
         align-items: center;
         color: white;
         text-decoration: none;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     /* Submenu */
@@ -970,7 +968,7 @@ main section:target {
         width: 100%;
         position: static;
         display: none;
-        background: rgba(255,255,255,0.1);
+        background: rgba(58,123,213,0.9);
         padding: 0;
         margin: 0;
         box-shadow: none;
@@ -978,43 +976,24 @@ main section:target {
         opacity: 1;
         pointer-events: auto;
         border-radius: 0;
-    }
-
-    nav ul li.active > ul {
-        display: block;
-    }
-
-    nav ul ul li {
-        padding: 0;
+        z-index: 1000;
     }
 
     nav ul ul li a {
-        padding: 12px 25px;
-        font-size: 14px;
-        color: white;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        padding-left: 30px;
     }
 
-    /* Icon cho menu có submenu */
-    nav ul li > a:after {
-        content: '+';
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    nav ul li.active > a:after {
-        content: '-';
-    }
-
-    /* Loại bỏ các hiệu ứng hover không cần thiết trên mobile */
-    nav ul li:hover > ul {
+    /* Loại bỏ tất cả các hiệu ứng hover */
+    nav ul li:hover > ul,
+    nav ul li:hover > a {
         display: none;
         transform: none;
+        background-color: transparent;
     }
 
-    nav ul li:hover > a {
-        background-color: transparent;
-        transform: none;
+    /* Chỉ hiển thị submenu khi có class active */
+    nav ul li.active > ul {
+        display: block;
     }
 
     /* Sửa lại card container cho mobile */

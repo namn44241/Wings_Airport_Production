@@ -2736,7 +2736,6 @@
       });
 
       document.addEventListener('DOMContentLoaded', function() {
-        // Xử lý menu trên mobile
         const menuItems = document.querySelectorAll('nav ul li');
         
         menuItems.forEach(item => {
@@ -2746,33 +2745,29 @@
             if (submenu) {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    item.classList.toggle('active');
+                    e.stopPropagation();
                     
-                    // Đóng các submenu khác
+                    // Đóng tất cả các submenu khác
                     menuItems.forEach(otherItem => {
-                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                        if (otherItem !== item) {
                             otherItem.classList.remove('active');
                         }
                     });
+                    
+                    // Toggle active class
+                    item.classList.toggle('active');
                 });
             }
         });
 
-        // Xử lý responsive cho dashboard cards
-        function adjustCardLayout() {
-            const container = document.querySelector('#dashboard .card-container');
-            if (container) {
-                const width = window.innerWidth;
-                if (width <= 768) {
-                    container.style.gridTemplateColumns = '1fr';
-                } else {
-                    container.style.gridTemplateColumns = 'repeat(4, 1fr)';
-                }
+        // Đóng submenu khi click ra ngoài
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('nav')) {
+                menuItems.forEach(item => {
+                    item.classList.remove('active');
+                });
             }
-        }
-
-        window.addEventListener('resize', adjustCardLayout);
-        adjustCardLayout();
+        });
     });
     </script>
 </body>
