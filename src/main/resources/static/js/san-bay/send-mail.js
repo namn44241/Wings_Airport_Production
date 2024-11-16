@@ -31,7 +31,7 @@ var fullName = lastName + ' ' + firstName;
 
 console.log("Selected language:", language);
 
-fetch('/send-email', {
+fetch('https://wingsairportproduction-production.up.railway.app/send-email', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
