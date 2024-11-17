@@ -1,3 +1,20 @@
+header {
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: #0c7de6;
+    background: linear-gradient(90deg, rgba(58,123,213,1) 0%, rgba(0,210,255,1) 100%);
+}
+.headerdiv {
+    display: flex; 
+    align-items: center;
+}
+
 /* Preloader styles */
 #preloader {
     position: fixed;
